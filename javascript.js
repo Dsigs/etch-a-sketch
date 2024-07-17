@@ -36,8 +36,8 @@ function createGrid(gridNum) {
 
 function gridSize() {
     grid.forEach((grid) => {
-        grid.style.width = (350 / gridNum) + "px";
-        grid.style.height = (350/ gridNum) + "px";
+        grid.style.width = (750 / gridNum) + "px";
+        grid.style.height = (750/ gridNum) + "px";
     })
 }
 

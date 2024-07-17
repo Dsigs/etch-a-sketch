@@ -1,22 +1,50 @@
 const container = document.querySelector("#container");
+let gridNum = 16;
+const btn = document.querySelector('.btn');
 
-for (i = 0; i < 16; i++) {
-    div = document.createElement('div');
-    div.classList.add('grid'); 
-    for (j = 0; j < 16; j++) {
-        div = document.createElement('div');
-        div.classList.add('grid');
-        container.appendChild(div);
+createGrid(gridNum);
+colorGrid();
+
+btn.addEventListener('click', () => {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+        }
+    do {
+        gridNum = prompt('Grid size:');
+    } while (gridNum > 100)
+    createGrid(gridNum);
+})
+
+function createGrid(gridNum) {
+    container.innerHTML = '';
+    for (i = 0; i < gridNum; i++) {
+        parentDiv = document.createElement('div');
+        parentDiv.classList.add('sub-container');
+        for (j = 0; j < gridNum; j++) {
+            div = document.createElement('div');
+            div.classList.add('grid');
+            parentDiv.appendChild(div);
+        }
+        container.appendChild(parentDiv);
     }
-    container.appendChild(div);
+
+    grid = document.querySelectorAll('.grid');
+    subContainer = document.querySelectorAll('.sub-container');
+    gridSize();
+    colorGrid();
 }
 
-let grid = document.querySelectorAll('.grid');
+function gridSize() {
+    grid.forEach((grid) => {
+        grid.style.width = (350 / gridNum) + "px";
+        grid.style.height = (350/ gridNum) + "px";
+    })
+}
 
-grid.forEach((grid) => {
-    grid.addEventListener("mouseenter", () => {
-        grid.style.backgroundColor = 'black';
+function colorGrid() {
+    grid.forEach((grid) => {
+        grid.addEventListener("mouseenter", () => {
+            grid.style.backgroundColor = 'black';
+        });
     });
-});
-
-console.log(grid);
+}
